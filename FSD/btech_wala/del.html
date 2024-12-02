@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>25th Anniversary Wishes Card</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+        }
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            width: 400px;
+        }
+        .photo-frame {
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        #photo {
+            display: none;
+        }
+        .card button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .card button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Happy 25th Anniversary!</h1>
+        <div class="photo-frame" onclick="document.getElementById('photo').click()">
+            <img id="uploaded-photo" src="" alt="Upload your photo" style="max-width: 100%; max-height: 200px;">
+            <p id="upload-text">Click to upload a photo</p>
+        </div>
+        <input type="file" id="photo" accept="image/*" onchange="loadPhoto(event)">
+        <p>Here's to 25 years of love and happiness. Cheers to many more!</p>
+        <button>Send Wishes</button>
+    </div>
+
+    <script>
+        function loadPhoto(event) {
+            const photo = document.getElementById('photo').files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('uploaded-photo').src = e.target.result;
+                document.getElementById('upload-text').style.display = 'none';
+                document.getElementById('uploaded-photo').style.display = 'block';
+            };
+            reader.readAsDataURL(photo);
+        }
+    </script>
+</body>
+</html>
